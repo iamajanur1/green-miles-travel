@@ -1,0 +1,4 @@
+<?php $__env->startSection('title','Trail not found | Green Miles Travel'); ?>
+<?php $__env->startSection('content'); ?><section class="inner-hero" style="min-height:78vh;display:flex;align-items:center"><div class="container"><span class="eyebrow on-dark">404 / WRONG TURN</span><h1>This trail<br><em>leads nowhere.</em></h1><p>That page may have moved, but there are plenty of places left to explore.</p><a href="<?php echo e(route('home')); ?>" class="button button-light"><span>Back to the beginning</span><b>↗</b></a></div></section><?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.site', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH /Users/apple/Documents/green miles/green-miles-travel/resources/views/errors/404.blade.php ENDPATH**/ ?>

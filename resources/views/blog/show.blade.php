@@ -1,0 +1,5 @@
+@extends('layouts.site')
+@section('title',($post->seo_title ?: $post->title.' | Green Miles Journal'))
+@section('description',($post->seo_description ?: $post->excerpt))
+@push('head')<script type="application/ld+json">{!! json_encode(['@context'=>'https://schema.org','@type'=>'Article','headline'=>$post->title,'datePublished'=>$post->published_at?->toIso8601String(),'description'=>$post->excerpt],JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_UNICODE) !!}</script>@endpush
+@section('content')<section class="inner-hero"><div class="container"><div class="crumb"><a href="{{route('home')}}">Home</a> / <a href="{{route('blog')}}">Journal</a> / {{$post->title}}</div><h1>{{$post->title}}</h1><p>{{$post->published_at?->format('d M Y')}} · {{$post->read_minutes}} minute read</p></div></section><section class="section"><div class="container"><article class="content-article">@if($post->cover_image)<img class="feature-photo" src="{{asset('storage/'.$post->cover_image)}}" alt="{{$post->title}}">@endif<div class="rich-content">{!! nl2br(e(strip_tags($post->body))) !!}</div><a class="text-link" href="{{route('blog')}}">← All field notes</a></article></div></section>@endsection

@@ -1,0 +1,921 @@
+Green Miles Travel Website: Project Documentation
+Version 1.0 · October 22, 2026 · Visual reference: Luxtrail (Webflow) · Brand: Green Miles Travel
+0. How to use this document
+This document is written to be handed to a developer, or to a coding assistant together with your Instagram images, and produce the full site. Part 1 says what to build, Part 2 says how it looks and moves, Part 3 says how to build it, Part 4 says how to protect it. Part 5 is the launch checklist and Part 6 explains how to feed all of it, plus the photos, to a coding tool. Build in the order given in section 3.12.
+On “exactly like Luxtrail.” Luxtrail is a paid Webflow template. Its layout, section order, interaction patterns and responsive behavior are the reference, and this document asks you to match them closely. Its photos, illustrations, icons, copy and exported code belong to the template’s author and are licensed to the buyer for one site. Do not copy them. Every image, drawing and sentence on the Green Miles site should be original or come from Green Miles itself. That is also what stops the site from reading as a re-skinned template.
+Part 1. Product Requirements (PRD)
+1.1 Business context
+Green Miles Travel is a small travel, trekking and guiding company built around the raw side of North-East India, with budget-friendly trips as its main promise. Today it lives on Instagram (greenmiles_travels) and runs on phone and WhatsApp enquiries. Its Instagram highlights show current trips to Dzukou, Kapamodzu and Khonoma in Nagaland.
+The website replaces “DM us for details” with a place where a visitor can see real photos, read exactly what a trip includes, and send an enquiry. It also gives the owner a panel to run all of that without a developer.
+The logo carries a tagline about journeys with a positive impact. Confirm its exact wording with the client before using it in any copy.
+1.2 Goals
+Goal
+How we measure it (suggested targets)
+Turn Instagram visitors into enquiries
+4 to 6% of sessions end in a form submit, call tap or WhatsApp tap within 90 days
+Let the admin publish a trip alone
+A Green Miles team member adds a complete trip in under 15 minutes, unaided
+Fast on phones
+LCP under 2.5 s on a mid-range Android over 4G, since most traffic will arrive from Instagram
+Findable on Google
+Every trip, destination and post indexed with structured data; sitemap submitted at launch
+Feels like a premium brand
+Section-by-section design review against the Luxtrail reference, signed off by the client
+1.3 Users
+Role
+Who
+Needs
+Visitor
+Mostly on a phone, arriving from an Instagram post or story
+Price, dates, duration, difficulty, what is included, and a fast way to call or WhatsApp
+Owner (admin)
+Founder
+Full control: trips, content, enquiries, users, settings
+Editor
+Staff or helper
+Edit content and handle enquiries; cannot manage users or site settings, cannot delete
+1.4 Scope
+In version 1
+Later (version 2)
+All public pages in the sitemap
+Online payment (Razorpay) with deposits
+Admin panel with every collection below
+Visitor accounts and booking history
+Enquiry form, WhatsApp and call buttons
+Visitor reviews with moderation
+Departure dates with seats left
+Live seat locking at checkout
+SEO, sitemap, structured data
+Hindi and Assamese versions
+Analytics and event tracking
+Blog comments, newsletter
+Trips are confirmed by phone today, so an enquiry-first flow matches how the business really works. Payments bring refund rules and GST handling, which are better added after launch.
+1.5 Sitemap
+URL
+Page
+/
+Home
+/about
+About Green Miles
+/tours
+All trips with category chips
+/tours/{slug}
+Trip detail
+/categories/{slug}
+Category page: same layout as /tours, filtered, with its own hero
+/destinations
+Destinations index
+/destinations/{slug}
+Destination detail
+/blog and /blog/{slug}
+Journal list and post
+/contact
+Contact and enquiry
+/privacy and /terms
+Legal
+404 and 403
+Error pages in brand style
+1.6 Page requirements
+Page
+Requirements
+Home
+The twelve sections in 2.6. Featured trips, categories, destinations, testimonials and posts all come from the CMS; nothing is hard-coded.
+Tours
+Trip cards in a grid, category chips (All plus each active category), sort by upcoming date or price, empty state. Chips work server-side through ?category= and are enhanced with JavaScript so the page does not reload.
+Trip detail
+Image gallery with lightbox, summary bar (price per person, duration, difficulty, group size, best season, start point), day-wise itinerary accordion, inclusions and exclusions, upcoming departures with seats left, FAQ, related trips. Desktop: sticky enquiry card. Mobile: fixed bottom bar with Call, WhatsApp and Enquire.
+Category
+Hero with a short line, chips row with the active chip filled, trip grid.
+Destination
+Hero, short story, best time, how to reach, trips going there, gallery.
+Journal
+Grid of posts; post page with reading time, cover, body, related posts.
+Contact
+Form (name, phone, email optional, trip, preferred dates, group size, message, consent checkbox), phone numbers, WhatsApp, address, map link, social links. Success state with a WhatsApp follow-up button.
+About
+Story, founder, values around responsible travel, team, counters (only with real numbers), final call to action.
+1.7 Admin requirements
+Area
+The admin can
+Trips
+Create, edit, duplicate, schedule, publish, unpublish, archive; mark up to three as featured for the home page; assign categories and destination; build itinerary days; add departures with seat counts; preview drafts through a private link
+Categories
+Name, tagline, icon, cover image, order, show or hide
+Destinations
+Story, best time, how to reach, cover, gallery, featured flag
+Journal posts
+Write in a rich editor, add a cover, schedule, fill SEO fields
+Testimonials
+Quote, photo, trip, rating, and a consent tick before it can go live
+Media library
+Upload, rename, alt text, see where an image is used
+Enquiries
+Inbox with status (New, Contacted, Confirmed, Closed), assignee, private notes, search, CSV export
+Site settings
+Phone numbers, WhatsApp, email, address, social links, home hero text and image, milestone numbers, default SEO
+Users
+Owner only: invite, change role, disable
+Panel rules: every list has search and filters; deleting a trip archives it; every change is written to an activity log; a trip cannot be published without a cover image, a price, a category and at least one itinerary day.
+1.8 Non-functional requirements
+Area
+Requirement
+Performance
+Budgets in 3.10
+Accessibility
+WCAG 2.2 AA, full keyboard use, visible focus, alt text on every photo, reduced-motion setting respected
+Browsers
+Last two versions of Chrome, Edge, Firefox and Safari, plus iOS Safari 16 and Android Chrome
+Responsive
+Four breakpoints defined in 2.4, tested at the widths in 2.9
+SEO
+Server-rendered HTML, one h1 per page, structured data, clean URLs
+Privacy
+Consent on forms, minimal data, a retention rule (Part 4)
+1.9 Open questions for the client
+1. The real trip list with prices, dates, itineraries and inclusions.
+2. Final categories (six are proposed in 2.6, row 2).
+3. The vector logo file and the exact tagline wording.
+4. Which of the two phone numbers on Instagram is for calls and which is on WhatsApp.
+5. Whether prices are shown in full or as “from” prices.
+6. Photo permission from anyone recognisable, especially for testimonial portraits.
+7. Domain name, and who owns the registrar and hosting accounts.
+8. The business email address that receives enquiries.
+Part 2. Design Specification
+2.1 Rules that keep it from looking generated
+1. Real photography only, from Green Miles trips. No stock photos, no generated images.
+2. No dotted grids or dot patterns, no sparkles, no glow or blur blobs, no purple-to-blue gradients, no glass panels.
+3. One decorative language, drawn once as SVG and reused: torn paper edges, a hand-drawn dashed trail line, trail-marker stamps, and the leaf and plane from the logo. All of it is original, not traced from Luxtrail.
+4. An uneven, human rhythm: cards tilt 1 to 3 degrees in fixed patterns, photos carry paper-tape strips, grids are not perfectly uniform.
+5. No emoji as icons. One outline icon set (Lucide, stroke 1.75) used everywhere.
+6. Copy is specific: real place names, altitudes, distances, inclusions. See 2.11 for words to avoid.
+7. Every number on the site is true. A counter stays hidden until there is real data behind it.
+8. The only overlay on photos is a flat dark tint for legibility. No gradient washes.
+2.2 Color tokens
+The values below are proposed from the logo’s three greens. Sample the real values from the vector logo with an eyedropper and change them in one place (tokens.css).
+Token
+Hex
+Used for
+--gm-forest
+#1E4D2B
+Headings, primary buttons, footer and final call-to-action background
+--gm-leaf
+#3E8E3A
+Script accent words, icons, large text
+--gm-moss
+#8DB63C
+Arrow chips, hover states, highlights on forest backgrounds
+--gm-mist
+#EDF4E4
+Soft section and card backgrounds
+--gm-sand
+#F6F3EA
+Default page background
+--gm-paper
+#FFFFFF
+Cards and the nav panel
+--gm-ink
+#1C261F
+Body text
+--gm-stone
+#5C685F
+Secondary text and captions
+--gm-line
+#D9E1D2
+Borders and dividers
+Luxtrail uses a salmon accent on its buttons and arrow chips. Here that accent role is played by the logo green, and nothing red or orange is introduced.
+Contrast: leaf on white is roughly 4:1, so use leaf only for large text (24 px and up, or 19 px bold) and for icons. Use forest for small text. Moss is for dark backgrounds only. Check every text and background pair with a contrast checker before sign-off.
+2.3 Typography
+The font families match the reference and are free on Google Fonts. Self-host them as WOFF2 with font-display: swap, and preload only Inter Tight 500 and 600.
+Role
+Font
+Weights
+Headings, body, buttons, UI
+Inter Tight
+400, 500, 600, 700
+Script accent word inside headings
+Borel
+400
+Small handwritten labels, used rarely
+Kaushan Script
+400
+Compare with the live reference to confirm which script face sits where.
+Style
+Desktop
+Tablet
+Mobile L
+Mobile
+H1
+6.25rem
+5rem
+3.5rem
+2.4rem
+H2
+4rem
+3rem
+2.5rem
+2rem
+H3
+3rem
+2.5rem
+2rem
+1.75rem
+H4
+2.25rem
+2rem
+1.75rem
+1.5rem
+H5
+1.75rem
+1.5rem
+1.5rem
+1.25rem
+H6
+1.25rem
+1.25rem
+1.25rem
+1.25rem
+Body
+1rem
+1rem
+1rem
+1rem
+H1 and H2 follow the reference’s variables. The reference keeps H3 to H5 fixed at every size, and they are reduced here so they wrap cleanly on phones. Headings use weight 600, line height 1.05 to 1.15, and letter spacing of −0.02em on H1 and H2. Body text uses line height 1.6.
+2.4 Layout system
+Item
+Value
+Container
+1280 px maximum, 24 px side padding (32 px tablet, 20 px mobile). Confirm the reference width by measuring it.
+Section padding, top and bottom
+7.5rem desktop, 5rem tablet, 3.75rem mobile
+Spacing scale
+4 px base: 4, 8, 12, 16, 24, 32, 48, 64, 96, 120. The reference’s exported spacing variables hold odd values (such as 37rem) that do not work as a scale.
+Corner radius
+Buttons and badges fully round; cards 24 px; large photos 24 to 32 px
+Breakpoints
+Desktop 992 px and up; Tablet 768 to 991; Mobile L 480 to 767; Mobile up to 479 (the same four Webflow uses)
+2.5 Components
+Component
+Spec
+Navigation
+Logo on the left. On the right, a round menu toggle that opens a floating white panel with five rows (icon, label, one short line beneath), and a “Plan a Trip” pill button that is hidden on mobile. Transparent over the hero with the white logo; after about 80 px of scroll it turns solid sand with the dark logo (confirm against the live reference). The panel opens with a 300 ms scale and fade and the rows stagger in.
+Primary button
+Two joined parts: a text pill and a round arrow chip. Variants: Primary (forest fill, white text, moss chip), Secondary (white fill, forest text, leaf chip), Tertiary (outline). On hover the double-chevron icon slides out to the right while a second one enters from the left, 400 ms, and the text shifts 4 px.
+Badge
+Small pill above every section heading. On photos: translucent white with white text. On light backgrounds: mist fill with forest text. 14 px, weight 500.
+Section heading
+Two or three lines with one word in the script face and leaf green, like “Adventure” in the reference hero. Never more than one script word per heading.
+Category card
+Tall rounded photo, a small round icon at the top left, name and one-line tagline at the bottom over a flat dark tint. Hover: photo zooms 5% and the icon turns 8 degrees.
+Category chips
+Row of pill chips, each with a small round icon; the first is All with an infinity icon. The active chip is filled dark with white text.
+Trip card
+Photo with a white category tag at its top left, two-line title (trip name, then place), one-sentence summary, price row (₹ 4,500 / person) and a duration pill (3D/2N). The whole card is one link. Hover: photo zooms 5% and the card lifts 6 px.
+Destination panel
+Name, a fact line (best time to visit), short blurb, location row with a pin icon, “View Destination” button.
+Review card
+Round portrait, name, city, five stars, quote, destination tag.
+Counter
+Large digits that roll vertically like an odometer, ending with a plus sign or unit.
+Footer
+Forest background. Logo, one-line brand statement, social icons, Pages column, Utility column (Privacy, Terms, Sitemap), Contact column (address, phones, email), bottom row with copyright.
+2.6 Home page, section by section
+#
+Section
+Desktop
+Tablet and mobile
+Data source
+1
+Hero
+Full-bleed trek photo with a flat dark tint, badge, H1 with one script word, short paragraph, “Start Exploring” button. A torn-paper edge at the bottom overlaps the next section.
+Same stack, centered text; H1 scales per 2.3; the edge keeps its shape
+Site settings (hero text and image)
+2
+Experiences
+Badge, heading, slider with three category cards per slide, two slides, arrows and dots, “Browse Categories” button. Proposed categories: Treks, Villages and Culture, Nature, Weekend Getaways, Budget Trips, Adventure.
+Two cards on tablet, one on mobile; arrows hide and swipe turns on
+Categories (six active)
+3
+Why Green Miles
+Heading and four tilted cards in a staggered row (two white, one mist, one sand), each with a hand-drawn round icon, a title and one line. A route drawing sits on the left and a hills drawing on the right.
+Two columns on tablet, one column on mobile with tilt cut to 1 degree
+Site settings
+4
+Featured trips
+Heading and “Explore All Trips” button on one line, then three trip cards: the first tilted −2°, the middle one straight with a paper-tape strip on its photo, the third tilted +2°
+Cards stack; tilt removed on mobile
+Trips flagged featured (maximum three)
+5
+Next adventure
+Left: badge, heading, button. Right: three overlapping tilted photos and a slowly rotating circular Green Miles badge.
+Photos shrink into a row under the text
+Three images from site settings
+6
+Destination strip
+Two rows of outlined place names separated by a small plane icon, scrolling in opposite directions
+Same, smaller type
+Destinations (all active)
+7
+Discover places
+Heading, then a slider with numbered navigation. Each slide: tilted photo on the left, white detail panel in the middle, tilted photo on the right.
+Panel on top, one photo below, tilt removed
+Destinations (featured)
+8
+Milestones
+Heading, a big odometer number, an outline map of the North-East with hand-drawn route lines and location pins, three smaller stat blocks, four floating round avatars
+Map moves above the stats; avatars hidden below 480 px
+Site settings (real numbers only)
+9
+Traveler stories
+Left: badge, heading, one line of text, avatar stack with traveler count. Right: slider card with a tilted photo, tape strip and review card; arrows and numbered navigation.
+Stacked, text first
+Testimonials (consent ticked)
+10
+Journal
+Heading and “Read Journal” button, then three items: a wide photo card with date and title over the image, a tall tinted card, and a text card with a photo underneath
+Single column
+Latest three posts
+11
+Final call to action
+Forest block with a large heading and one script word, a hand-drawn stamp illustration on each side, wavy lines, “Begin Your Journey” button, and a hills-and-pines silhouette along the bottom
+Stamps shrink, silhouette stays
+Static
+12
+Footer
+See 2.5
+Columns stack
+Site settings
+The Tours and Category pages open like the hero: a photo header with a short H1 (one script word) and a torn bottom edge, then the chips row, then the trip grid.
+2.7 Decorative artwork to draw
+All original SVG, one consistent line weight and a slightly rough hand-drawn edge.
+Asset
+Used in
+Torn-paper edge (two variants)
+Hero bottom, category hero bottom, tinted section tops
+Dashed trail line with a small plane
+Why Green Miles, Milestones
+Hills, pines and bamboo silhouette
+Final call to action, footer top
+Two trail-marker stamps (for example Dzukou and Khonoma)
+Final call to action
+Paper-tape strip
+Over trip photos and review photos
+North-East outline map with route lines
+Milestones
+Circular rotating badge using the logo leaf
+Next adventure section
+Four line icons for the Why cards
+Why Green Miles
+2.8 Motion
+Use GSAP 3 with ScrollTrigger and SplitText, the same toolkit the reference loads.
+Element
+Effect
+Timing
+Hero on page load
+Badge fades in; heading splits into lines that rise 40 px with a fade; paragraph and button follow
+Heading 0.9 s with 0.1 s line stagger, paragraph at 0.4 s, button at 0.6 s, ease power3.out
+Section headings
+Lines rise out of a mask when the heading is 85% into view
+0.9 s, stagger 0.08 s, once
+Badges, paragraphs, buttons
+Fade up 24 px
+0.7 s, once
+Why, trip and review cards
+Rise 60 px and rotate from 0 to their resting tilt
+0.9 s, stagger 0.12 s
+Photo collage
+Photos arrive from different offsets; light scroll parallax of about 30 px on desktop only
+Scrubbed, 0.6 s smoothing
+Odometer counters
+Digit columns roll to the final digit when the block enters view
+1.6 s, ease power3.inOut, stagger 0.1 s, once
+Destination strip
+Continuous horizontal loop, rows in opposite directions
+40 s linear, CSS only
+Sliders
+Cross-fade between slides. The Experiences slider autoplays every 4 s and pauses on hover; the others are manual.
+500 ms linear
+Rotating badge
+Slow continuous spin
+24 s linear
+Nav panel
+Scale from 0.96 with a fade; rows stagger in
+300 ms, 40 ms stagger
+Card hover
+Photo scales to 1.05, card rises 6 px
+0.6 s power2.out
+Button hover
+Arrow swap and a 4 px text shift
+400 ms
+Reduced motion
+Everything above is off, content shows in its final state, sliders do not autoplay
+prefers-reduced-motion
+The reference’s exact timings live in Webflow’s Interactions panel, which was not captured, so these are tuned defaults. To match more closely, screen-record the reference at 60 fps and adjust durations and staggers side by side.
+2.9 Responsive behavior
+Breakpoint
+What changes
+Desktop (992 px and up)
+Full layouts as in 2.6. Tilts, parallax and floating avatars are on.
+Tablet (768 to 991 px)
+Two-column grids; the category slider shows two cards; H1 at 5rem; section padding 5rem. The Plan a Trip button stays.
+Mobile L (480 to 767 px)
+Single column; tilts cut to 1 degree; parallax off; slider arrows hidden and swipe on; section padding 3.75rem.
+Mobile (up to 479 px)
+H1 at 2.4rem; Plan a Trip button hidden (the menu panel carries it); floating avatars hidden; trip pages get the fixed bottom bar; tap targets at least 44 px.
+Test at 360, 393, 430, 768, 1024, 1280, 1440 and 1920 px wide.
+2.10 Image checklist
+Slot
+Quantity
+Shape
+Minimum size
+Notes
+Home hero
+1
+Landscape 16:9
+2400 px wide
+Use the original file from a phone or camera, not an Instagram download. One clear subject and a quiet area of sky or ridge for the text.
+Category covers
+6
+Portrait 4:5
+1200 px wide
+One strong photo per category
+Trip cover
+1 per trip
+Landscape 3:2
+1800 px wide
+Also used for link previews
+Trip gallery
+6 to 10 per trip
+Mixed
+1600 px on the long side
+A mix of landscape, people, food and camp
+Next adventure collage
+3
+Portrait 3:4
+1000 px wide
+Different moods: summit, village, group
+Destination photos
+2 per destination
+Portrait 4:5
+1200 px wide
+
+Traveler portraits
+4 to 6
+Square
+600 px
+Written permission needed
+Founder and team
+1 each
+Square or 4:5
+1000 px
+
+Journal covers
+1 per post
+Landscape 3:2
+1600 px wide
+
+Logo
+1
+Vector
+SVG
+Plus a simple leaf-and-plane mark for the favicon
+Instagram downloads are capped near 1080 px and compressed. That is fine for cards but weak for the hero and trip covers, so ask the team for originals from their phones or drive. Name files by slot: hero-01.jpg, cat-treks.jpg, trip-dzukou-cover.jpg, trip-dzukou-03.jpg.
+2.11 Copy
+Rules: write with real facts (place, altitude, distance, what the price covers). Keep sentences short. Prices in ₹ with “per person.” No em dashes. Avoid filler such as unlock, elevate, seamless, curated, immersive and journey of a lifetime. Every claim about guides, group sizes or ratings must be true.
+Draft lines to adapt once the facts are confirmed:
+Place
+Draft
+Hero heading
+Trails worth walking in the North-East
+Hero paragraph
+Treks, village stays and guided trips at prices that stay honest.
+Experiences heading
+Pick the kind of trip you want
+Why heading
+Why people walk with Green Miles
+Featured heading
+Trips leaving soon
+Final call to action
+Your next trail is waiting
+Footer line
+Budget-friendly treks and village trips across North-East India.
+Part 3. Implementation
+3.1 Stack
+Layer
+Choice
+Why
+Alternative
+Framework
+Laravel on PHP 8.3
+Mature auth, queues, policies and validation; fits a team that already knows it
+Node with React
+Admin panel
+Filament (latest stable)
+Gives the CMS: resources, repeaters, uploads, roles, dashboard widgets. Saves weeks over a hand-built admin.
+Custom Blade admin
+Database
+MySQL 8
+Standard on every host
+PostgreSQL
+Public pages
+Blade templates, Vite, plain CSS with custom properties
+Server-rendered for SEO and fast on 4G; the tokens in 2.2 and 2.3 map straight to CSS variables
+Next.js
+Animation
+GSAP 3 with ScrollTrigger and SplitText
+Same toolkit as the reference
+
+Sliders
+Swiper with the fade effect
+Cross-fade, swipe and numbered pagination out of the box
+Embla
+Media
+spatie/laravel-medialibrary with Imagick
+Conversions, responsive srcset, per-model collections
+Intervention Image
+Roles
+spatie/laravel-permission
+Owner and Editor roles
+Filament policies only
+Audit trail
+spatie/laravel-activitylog
+Who changed what
+
+Spam control
+Cloudflare Turnstile
+Free, privacy-friendly
+hCaptcha
+Analytics
+Plausible or GA4
+Event tracking for form, call and WhatsApp taps
+
+Hosting
+A VPS with Ubuntu LTS, Nginx and PHP-FPM, behind Cloudflare
+Full control, queue worker and cron
+Any host with PHP 8.3 and SSH
+Check current versions of Laravel, Filament and GSAP when you install, and read their upgrade notes. This document names tools, not version numbers.
+3.2 Project structure
+app/
+  Models/
+  Http/Controllers/
+  Http/Requests/        form validation
+  Policies/
+  Observers/            clear cache on save
+  Filament/Resources/   Trip, Category, Destination, Post, Testimonial, Enquiry, User
+  Filament/Pages/       SiteSettings
+  Filament/Widgets/
+resources/
+  views/layouts/ components/ pages/ partials/sections/
+  css/tokens.css base.css components/ sections/
+  js/app.js modules/nav.js reveal.js sliders.js counters.js filters.js
+  svg/                  hand-drawn artwork from 2.7
+database/migrations/ seeders/
+public/build/
+3.3 Data model
+Table
+Main fields
+trips
+title, slug, summary, description (html), destination_id, price_per_person (integer, INR), price_note, duration_days, duration_nights, difficulty (easy, moderate, hard), group_size_max, best_season, start_point, altitude_m (nullable), itinerary (json: day, title, body), inclusions (json), exclusions (json), faq (json), is_featured, status (draft, scheduled, published, archived), publish_at, sort_order, seo_title, seo_description, soft deletes
+category_trip
+category_id, trip_id
+departures
+trip_id, starts_on, ends_on, seats_total, seats_booked, price_override (nullable), status
+categories
+name, slug, tagline, sort_order, is_active (icon and cover in media)
+destinations
+name, slug, region, summary, description, best_time, how_to_reach, is_featured, sort_order, seo fields
+posts
+title, slug, excerpt, body, author_id, status, published_at, read_minutes, seo fields
+testimonials
+name, city, trip_id (nullable), quote, rating, consent_given, status
+enquiries
+name, phone, email (nullable), trip_id (nullable), preferred_dates, group_size, message, source (form, whatsapp, call), status (new, contacted, confirmed, closed), assigned_to, notes, consent_at, ip_hash
+settings
+one row: phones, whatsapp, email, address, socials (json), hero text, milestone numbers, default SEO
+users, roles, permissions
+Standard, through spatie/laravel-permission
+activity_log
+Standard, through spatie/laravel-activitylog
+Media (cover, gallery, icons, portraits) lives in the media library, not in these tables. Store only a hash of the visitor’s IP address on enquiries, never the raw address.
+3.4 Admin panel
+Mount the panel at /manage. It has one resource per table above plus a Site Settings page.
+Role
+Can do
+Owner
+Everything, including users, roles and settings
+Editor
+Create and edit trips, destinations, posts, testimonials and media; work enquiries; cannot delete, cannot touch users or settings
+Dashboard widgets: new enquiries, trips published, next five departures with seats left, latest enquiries table.
+Publish rules, enforced in validation when status changes to published: cover image present, price set, at least one category, at least one itinerary day, summary no longer than 160 characters, alt text on every gallery image. Drafts preview through a signed, expiring URL.
+3.5 Routes and caching
+Route
+Handler
+Notes
+GET /
+HomeController
+Cached; cleared when trips, categories, destinations, posts or settings change
+GET /tours, /categories/{slug}
+TripController@index
+?category= and ?sort= supported without JavaScript
+GET /tours/{slug}
+TripController@show
+Published only; drafts need a signed URL
+GET /destinations, /destinations/{slug}
+DestinationController
+
+GET /blog, /blog/{slug}
+PostController
+
+GET /about, /contact, /privacy, /terms
+PageController
+
+POST /enquiry
+EnquiryController@store
+Throttled to 5 per minute per IP, Turnstile and honeypot checked
+GET /sitemap.xml
+Generated
+Rebuilt by observers and a nightly job
+Model observers bump a cache version key on every save, so pages are always fresh without a manual clear.
+3.6 Front-end build
+CSS is split into tokens, base, components and sections. Tokens hold every value from Part 2, so a color or size change happens in one file.
+:root {
+  --gm-forest: #1E4D2B;
+  --gm-leaf: #3E8E3A;
+  --gm-moss: #8DB63C;
+  --gm-mist: #EDF4E4;
+  --gm-sand: #F6F3EA;
+  --gm-ink: #1C261F;
+  --fs-h1: 6.25rem;
+}
+@media (max-width: 991px) { :root { --fs-h1: 5rem; } }
+@media (max-width: 767px) { :root { --fs-h1: 3.5rem; } }
+@media (max-width: 479px) { :root { --fs-h1: 2.4rem; } }
+Motion is attribute-driven. Add data-reveal to any element in the Blade views and one module animates it, so no section needs its own script.
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { SplitText } from 'gsap/SplitText';
+gsap.registerPlugin(ScrollTrigger, SplitText);
+
+const mm = gsap.matchMedia();
+mm.add('(prefers-reduced-motion: no-preference)', () => {
+  document.querySelectorAll('[data-reveal=heading]').forEach((el) => {
+    const split = SplitText.create(el, { type: 'lines', mask: 'lines' });
+    gsap.from(split.lines, {
+      yPercent: 110, duration: 0.9, ease: 'power3.out', stagger: 0.08,
+      scrollTrigger: { trigger: el, start: 'top 85%', once: true },
+    });
+  });
+
+  document.querySelectorAll('[data-digit]').forEach((col) => {
+    const digit = Number(col.dataset.digit);
+    gsap.to(col.firstElementChild, {
+      yPercent: -10 * digit, duration: 1.6, ease: 'power3.inOut',
+      scrollTrigger: { trigger: col, start: 'top 85%', once: true },
+    });
+  });
+});
+For the odometer, each digit is a clipped box one digit tall containing a stack of ten cells, 0 to 9. Check the SplitText options against the current GSAP docs when you wire it in.
+Layout details that avoid common bugs: give every image width and height or an aspect-ratio box to prevent layout shift; set the hero image to fetchpriority high and preload it; lazy-load everything below the first screen; keep tilt rotations on an inner wrapper so hover transforms do not fight them.
+3.7 Image pipeline
+Step
+Rule
+Upload
+JPG, PNG, WebP and HEIC accepted, 10 MB maximum, converted to WebP
+Conversions
+thumb 400, card 800, large 1600, hero 2400 px wide, with srcset generated automatically
+Metadata
+Strip EXIF on upload. Trek photos often carry GPS coordinates and should not publish them.
+Queue
+Conversions run on the queue so uploads stay quick
+Alt text
+Required for gallery and cover images before publishing
+3.8 Enquiry flow
+1. Visitor submits the form on /contact or from a trip page (trip preselected).
+2. Server validates, checks the honeypot and Turnstile token, saves the enquiry with a consent timestamp.
+3. A queued email goes to the business address; an optional confirmation goes to the visitor if they gave an email.
+4. The success screen shows a WhatsApp button that opens wa.me with a prefilled message that names the trip and dates.
+5. The admin sees it in the Enquiries inbox with status New.
+6. Call and WhatsApp taps from any page fire analytics events.
+3.9 SEO
+Item
+Rule
+Titles and descriptions
+Per page, editable in admin, with a default pattern as a fallback
+Canonical and social previews
+Canonical URL on every page; Open Graph image per trip, destination and post
+Structured data
+TravelAgency on the site, TouristTrip on trips, BreadcrumbList everywhere, Article on posts
+Sitemap and robots
+Auto-generated sitemap.xml and a robots.txt; staging is noindex
+Slugs
+If a slug changes, the old URL gets a 301 redirect automatically
+Local presence
+Claim and fill the Google Business Profile and link the site from Instagram
+3.10 Performance budget
+Item
+Target
+JavaScript on the home page
+120 KB gzipped or less, including GSAP, ScrollTrigger, SplitText and Swiper
+Hero image
+250 KB or less
+Card images
+90 KB or less each
+Lighthouse mobile
+Performance 90 or more; Accessibility, Best Practices and SEO 95 or more
+Core Web Vitals
+LCP under 2.5 s, CLS under 0.1, INP under 200 ms
+Load sliders and counters only on pages that use them. Self-host fonts. Put the site behind Cloudflare for caching and compression.
+3.11 Environments and deployment
+Environment
+Purpose
+Local
+Development with seeded sample data
+Staging
+Client review; password-protected and noindex
+Production
+The live site
+CI runs code style checks, tests, composer audit and npm audit on every push. A deploy runs: pull the release, composer install without dev packages, migrate with the force flag, cache config, routes and views, restart the queue worker. Assets are built in CI, not on the server. The server runs Nginx, PHP-FPM, MySQL, a queue worker under Supervisor and the scheduler through cron. Backups are in Part 4.
+3.12 Build order
+Phase
+Deliverable
+Rough effort (one developer, full time)
+1
+Repo, tokens, fonts, layout, nav, footer, button and badge components
+3 to 4 days
+2
+Home page, all twelve sections, static and responsive
+6 to 8 days
+3
+Migrations, models, Filament resources, seeders with real Green Miles content
+5 to 6 days
+4
+Tours, trip detail, categories, destinations, journal, about, contact
+6 to 8 days
+5
+Motion pass against 2.8
+4 to 5 days
+6
+SEO, performance and accessibility pass
+3 to 4 days
+7
+Security hardening, QA on real devices, content entry, launch
+3 to 4 days
+Part 4. Security
+The site holds names and phone numbers from enquiries and gives staff a login that can change public content. Both deserve proper care, even for a small business.
+4.1 Requirements
+Area
+Requirement
+How
+Passwords
+Minimum 12 characters, checked against known breached passwords
+Laravel Password rules with uncompromised()
+Two-factor
+Required for the Owner, offered to Editors
+TOTP app through a Filament 2FA plugin or Laravel Fortify
+Login abuse
+5 attempts per minute per account and per IP, then a lockout
+Rate limiter on the login route
+Sessions
+2-hour idle timeout, session ID regenerated at login, cookies Secure, HttpOnly, SameSite Lax
+config/session.php
+Account recovery
+Reset links expire in 60 minutes and are throttled; the Owner account can also be reset from the server command line
+Laravel password broker plus an artisan command
+Authorization
+Every admin action is checked by a policy, not just hidden in the menu; Editors cannot reach users, roles or settings by URL either
+Filament and Laravel policies, tested
+SQL injection
+No raw queries with user input
+Eloquent and bound parameters only
+Cross-site scripting
+Blade escaping by default; rich text from the editor is cleaned before saving and again before output
+HTMLPurifier through mews/purifier with an allow-list of tags
+CSRF
+Token on every state-changing request
+Laravel default, never disabled
+Mass assignment
+Only listed fields can be filled
+$fillable on every model
+File uploads
+Allow-list of types checked by content, not by file name; 10 MB cap; random stored names; images re-encoded by Imagick, which removes embedded scripts and EXIF; SVG uploads blocked for users
+Media library plus a custom validation rule
+Public forms
+Honeypot field, Turnstile, 5 per minute per IP, server-side validation, a length limit on every field
+Form request class
+Transport
+HTTPS everywhere, HTTP redirected, HSTS with a long max-age after launch
+Nginx and Cloudflare
+Security headers
+X-Content-Type-Options nosniff, Referrer-Policy strict-origin-when-cross-origin, Permissions-Policy that turns off camera, microphone and geolocation, frame-ancestors none
+Middleware
+Content Security Policy
+Strict on public pages: default-src self; script-src self plus Turnstile; style-src self; img-src self and data; font-src self; form-action self; base-uri self. The admin panel runs on Livewire and Alpine and may need a looser policy, so apply the strict one to public routes and a separate one under /manage.
+Two middleware groups
+Secrets
+Keys, database and mail credentials only in the server .env, never in Git; production APP_DEBUG is false
+Server config, secret scanning in CI
+Admin exposure
+Panel under /manage; optional Cloudflare Access or IP allow-list in front of it; login page does not reveal whether an email exists
+Cloudflare rule, generic error messages
+Logging
+Failed logins, permission denials and form abuse are logged; logs never contain full phone numbers, passwords or tokens
+Log channel with a redaction step
+Audit trail
+Every create, edit, publish and delete on content is recorded with user and time
+spatie/laravel-activitylog
+Dependencies
+Weekly dependency updates; builds fail on high-severity advisories
+Dependabot or Renovate, composer audit, npm audit
+Server
+Key-only SSH, firewall with only 80, 443 and SSH open, automatic security updates, MySQL not exposed to the internet, no PHP execution in upload directories
+Server hardening checklist
+Backups
+Nightly database dump, weekly full copy including uploads, stored off the server and encrypted; keep 14 daily and 8 weekly; restore test every month
+spatie/laravel-backup
+4.2 Privacy and personal data
+Topic
+Rule
+What is collected
+Name, phone and the message are required. Email and dates are optional. Nothing else is asked.
+Consent
+A required checkbox beside the submit button links to the privacy page; the consent time is stored.
+Retention
+Set a fixed period for closed enquiries (24 months is a sensible start). Keep booking records as long as the accountant requires. A scheduled job removes or anonymises expired enquiries.
+Deletion
+A person can ask for their data to be removed; the Owner can delete or anonymise an enquiry from the panel.
+IP addresses
+Stored only as a hash, for abuse checks.
+Analytics
+A privacy-friendly tool, or GA4 behind a consent banner.
+Photos
+Testimonial portraits and any recognisable person need written permission; the testimonial form field consent_given must be ticked before it can publish.
+Law
+India’s Digital Personal Data Protection Act, 2023 applies to this kind of data. Have the privacy page checked by a legal adviser and confirm current obligations before launch.
+4.3 Pre-launch security checklist
+1. APP_DEBUG is false and APP_ENV is production.
+2. Admin Owner has 2FA on, and the default or seeded passwords are gone.
+3. Policy tests pass: an Editor gets a 403 on users, roles and settings, by URL as well as by menu.
+4. A real attempt to upload a PHP file, an SVG with a script and an oversized image is rejected.
+5. A script tag pasted into the rich editor and into every form field is shown as text or removed.
+6. Form rate limit and Turnstile verified from outside the office network.
+7. Security headers and CSP verified with an online scanner; no console CSP errors on any page.
+8. Database and .env are unreachable from the web; directory listing is off.
+9. A backup was restored to a clean machine and the site came up.
+10. Staging is noindex and password-protected, and production is not.
+11. Registrar, hosting, Cloudflare, mail and analytics accounts are owned by the client with 2FA on.
+Part 5. Launch Checklist
+Area
+Check
+Content
+Real trips, prices, itineraries, inclusions, departures and photos entered; no placeholder text anywhere
+Facts
+Phone and WhatsApp numbers tested; address and email correct; every number on the site is true
+Design
+Each of the twelve home sections compared with the reference at all four breakpoints; client sign-off
+Motion
+All animations checked at 60 fps on a mid-range phone; reduced-motion mode shows everything correctly
+Devices
+iPhone Safari, Android Chrome, desktop Chrome, Safari, Firefox and Edge
+Accessibility
+Keyboard-only run through the main flows; contrast pairs checked; alt text present
+Speed
+Lighthouse and real-device checks meet 3.10
+SEO
+Titles, descriptions, canonicals, sitemap submitted to Google Search Console, structured data validated, Google Business Profile filled
+Tracking
+Form, call and WhatsApp events arriving in analytics
+Legal
+Privacy and terms pages published and linked in the footer and on the form
+Handover
+A written guide for adding a trip and handling enquiries; one hour of training for the Green Miles team
+Part 6. Handing This to a Coding Tool
+6.1 What to prepare
+1. Export this document to Markdown and save it as docs/PROJECT.md in an empty repository.
+2. Put your Instagram photos in assets/photos, named by the slots in 2.10.
+3. Add the logo as SVG, or as a large PNG if that is all you have.
+4. Add screenshots of the Luxtrail sections as layout references in docs/reference. These are for looking at, not for copying from.
+5. Fill the open questions in 1.9 as far as you can, even roughly. Real trip data makes the seeders worth having.
+6.2 Starter instruction
+Build the Green Miles Travel website from docs/PROJECT.md.
+
+Stack: Laravel, MySQL, Filament admin, Blade, Vite, plain CSS, GSAP, Swiper.
+Follow Part 2 exactly for layout, tokens, components and motion.
+Use only the photos in assets/photos. No stock or generated images.
+No decorative dots, glows or gradients. Draw the artwork listed in 2.7 as SVG.
+Use the screenshots in docs/reference to match layout. Write all markup and CSS fresh.
+Do phase 1 from section 3.12, then stop so I can review before phase 2.
+Repeat the same instruction for each phase, changing only the phase number. Review each phase against the reference at all four breakpoints before moving on.
+6.3 What you still need to supply
+Item
+Why it matters
+Vector logo and exact tagline wording
+Exact brand colors and a crisp header, footer and favicon
+Real trip details and prices
+The CMS and every trip page depend on them
+Original photos, not Instagram downloads, for hero and trip covers
+Instagram files are too small and compressed for large images
+Phone, WhatsApp and email decisions
+Buttons and forms must reach a real person
+Photo and testimonial permissions
+Needed before people appear on the site
+Domain and hosting accounts in the client’s name
+Keeps ownership with the business

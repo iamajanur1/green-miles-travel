@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" role="img" aria-label="Original decorative trail map with hills and travel route">
+  <g fill="#e4e9dc" stroke="#a8baa4" stroke-width="2" stroke-linejoin="round"><path d="m18 125 61-26 46 16 38-43 39 9 24-31 55 16 29-24 61 37 32-7 63 42-31 19-58-8-16 18-43-14-29 23-31-10-36 23-41-5-44 22-24-31-52 3-43-12Z"/></g>
+  <path d="M55 132Q103 40 181 111T294 103 390 116 470 89" stroke="#b7a26a" stroke-width="2.5" stroke-dasharray="7 9" stroke-linecap="round" fill="none"/>
+  <g fill="#fff" stroke="#3d874c" stroke-width="3"><circle cx="66" cy="122" r="7"/><circle cx="183" cy="113" r="7"/><circle cx="291" cy="103" r="7"/><circle cx="388" cy="117" r="7"/></g>
+  <g fill="#45724c" font-family="Arial,sans-serif" font-size="14" font-weight="700"><text x="26" y="180">ASSAM</text><text x="190" y="41">NAGALAND</text><text x="372" y="183">ARUNACHAL</text></g>
+  <g stroke="#638c66" stroke-width="2" fill="none"><path d="m411 25 20-15 20 15m-28 0 8-9 11 9"/><path d="m85 45 20-15 20 15m-28 0 8-9 11 9"/></g>
+</svg>

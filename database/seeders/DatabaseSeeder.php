@@ -6,7 +6,7 @@ use App\Models\{User,Setting,Category,Destination,Trip,Departure,Announcement};
 class DatabaseSeeder extends Seeder { public function run():void {
  // Admin is never created with public/default credentials.
  if (env('ADMIN_EMAIL') && env('ADMIN_PASSWORD') && strlen((string) env('ADMIN_PASSWORD')) >= 12) {
-   User::query()->updateOrCreate(['email'=>env('ADMIN_EMAIL')],['name'=>env('ADMIN_NAME','Green Miles Owner'),'password'=>Hash::make(env('ADMIN_PASSWORD')),'role'=>'owner']);
+   User::query()->firstOrCreate(['email'=>env('ADMIN_EMAIL')],['name'=>env('ADMIN_NAME','Green Miles Owner'),'password'=>Hash::make(env('ADMIN_PASSWORD')),'role'=>'owner','is_active'=>true]);
  }
  Setting::query()->firstOrCreate(['id'=>1],['socials'=>['instagram'=>'https://www.instagram.com/greenmiles_travels/'],'hero_image'=>'assets/images/kapamodzu-hero.webp','default_seo_title'=>'Green Miles Travel | Explore North-East India','default_seo_description'=>'Small group treks, culture and festival trips across Nagaland and North-East India.']);
  foreach ([['Treks','treks','Walk into the wild','footprints'],['Villages & Culture','villages-culture','Meet the communities','home'],['Nature','nature','Room to breathe','leaf'],['Weekend Getaways','weekend-getaways','Go this weekend','calendar'],['Budget Trips','budget-trips','More miles, less spend','wallet'],['Adventure','adventure','The good kind of unknown','compass']] as $a) Category::firstOrCreate(['slug'=>$a[1]],['name'=>$a[0],'tagline'=>$a[2],'icon'=>$a[3]]);

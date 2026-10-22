@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 520" role="img" aria-labelledby="art-title art-desc">
+<title id="art-title">North-East India travel illustration</title>
+<desc id="art-desc">Original vector travel panorama with Nagaland morung, Tawang-style monastery, Khasi hills and living-root bridge, Kamakhya-inspired temple, tea terraces and a one-horned rhinoceros.</desc>
+<!-- Sky and hazy sunrise; solid shapes only. -->
+<circle cx="815" cy="310" r="248" fill="#f6e2cf"/><circle cx="815" cy="310" r="197" fill="#f2d2ba" opacity=".65"/>
+<g fill="#fbf5ed" stroke="#c2bea8" stroke-width="3" stroke-linejoin="round"><path d="M82 152q30-33 66-3 18-39 49-10 31-7 51 27H82Z"/><path d="M1318 105q40-31 71 7 17-39 45-16 38-14 71 26h-187Z"/><path d="M995 180q17-23 38-6 27-28 47 2 33-9 48 18H995Z"/></g>
+<!-- Distant North-East mountain ridges -->
+<path d="M0 326 92 266l57 24 69-85 92 73 84-109 110 106 69-94 92 81 82-118 103 115 68-54 80 75 77-89 90 75 100-113 105 110 70-36 98 80v205H0Z" fill="#bbcbb7"/>
+<path d="m180 250 38-45 44 35-20-5-21-13-24 28m197-42 38-39 43 43-34-16-18-9m285-16 39-47 38 40-38-16-22 5m442 28 48-54 38 38-34-18-21 8" fill="#e8ebdd"/>
+<path d="M0 373 98 319l74 30 69-54 110 57 79-64 89 79 126-82 120 69 72-49 101 74 89-57 80 46 122-67 110 91 81-44 100 40v143H0Z" fill="#92b19a"/>
+<path d="M0 423q95-81 180-24 86-74 170 9 90-79 169-27 87-72 154 5 104-84 189 3 101-67 176 5 96-59 165 0 103-70 197 4v122H0Z" fill="#6d9878"/>
+<!-- Khasi root bridge at left-middle -->
+<g transform="translate(65 326)" stroke-linecap="round" stroke-linejoin="round"><path d="M0 105Q97 18 216 101" fill="none" stroke="#584d3c" stroke-width="15"/><path d="M0 106Q100 40 216 106" fill="none" stroke="#92755c" stroke-width="8"/><path d="M26 83 23 113m29-42-2 44m31-54-1 53m29-55 1 52m28-43 1 45m29-34 3 38m27-23 1 23" stroke="#675741" stroke-width="5"/><path d="M7 126q45 21 90 5 66-21 121 0" stroke="#c4d8c6" stroke-width="7" fill="none"/></g>
+<!-- Khasi hills trees -->
+<g fill="#345e41"><path d="m36 398 22-115 25 115Z"/><path d="m49 338 9-68 14 68Z"/><path d="m283 405 24-130 27 130Z"/><path d="m297 344 12-75 12 75Z"/><path d="m1290 407 29-143 29 143Z"/><path d="m1307 338 12-89 14 89Z"/></g><g fill="#4d7d57"><circle cx="58" cy="293" r="27"/><circle cx="58" cy="268" r="18"/><circle cx="307" cy="275" r="33"/><circle cx="1318" cy="273" r="29"/></g>
+<!-- Nagaland morung, left foreground; original geometric drawing -->
+<g transform="translate(310 230)">
+  <path d="M-12 80 102-10 214 80Z" fill="#704c3a" stroke="#593d33" stroke-width="5"/><path d="m12 70 90-68 87 68Z" fill="#9e6746"/><path d="m25 66 78-48 76 48" fill="none" stroke="#4b3b31" stroke-width="8"/><path d="M12 78h178v171H12Z" fill="#b89168"/><path d="M26 78v169m28-169v169m119-169v169" stroke="#76503e" stroke-width="9"/><path d="M72 249V130h61v119" fill="#483a31"/><path d="M88 248v-95m27 95v-95" stroke="#ab6e52" stroke-width="5"/><path d="M5 123h192M7 166h184" stroke="#e4b17e" stroke-width="10"/><path d="M102-25V-3m-16-20 16 20 14-20" fill="none" stroke="#64422f" stroke-width="6"/>
+  <path d="m-5 252 107 0 108 0" stroke="#4f663d" stroke-width="9"/>
+</g>
+<!-- Tawang monastery style stepped layers at center -->
+<g transform="translate(700 138)">
+ <path d="M6 292h303v22H6Z" fill="#a3a393"/><path d="M34 200h242v94H34Z" fill="#e4c7a0" stroke="#725542" stroke-width="5"/>
+ <path d="M18 193 155 147 290 193v17H18Z" fill="#774338" stroke="#55382f" stroke-width="5"/>
+ <path d="M57 130h196v67H57Z" fill="#f2e0b8" stroke="#755d42" stroke-width="5"/><path d="M40 127 155 93 268 127v15H40Z" fill="#8c4e3e" stroke="#5f372e" stroke-width="4"/>
+ <path d="M88 57h133v70H88Z" fill="#e0bf8c" stroke="#725542" stroke-width="4"/><path d="M72 58 153 21 237 58v15H72Z" fill="#7a3e33" stroke="#533a30" stroke-width="4"/>
+ <path d="M140 21v-19h25v19" fill="#cfb476"/><path d="M152 2v-20" stroke="#5a3c36" stroke-width="4"/>
+ <g fill="#5c6559"><rect x="110" y="84" width="22" height="35"/><rect x="148" y="84" width="22" height="35"/><rect x="185" y="84" width="22" height="35"/><rect x="78" y="158" width="27" height="31"/><rect x="136" y="158" width="27" height="31"/><rect x="194" y="158" width="27" height="31"/><rect x="67" y="232" width="30" height="39"/><rect x="135" y="232" width="30" height="62"/><rect x="210" y="232" width="30" height="39"/></g>
+ <path d="M92 66h128M55 136h206M34 213h242" stroke="#b77a45" stroke-width="8"/>
+ <g fill="#e9b856"><path d="m-5 35 80 10-75 8Z"/><path d="m-5 35 18-2v5Z"/></g><path d="M-5 36V-10" stroke="#624b3f" stroke-width="3"/>
+</g>
+<!-- Kamakhya-inspired domed Assamese temple to the right -->
+<g transform="translate(1130 246)">
+  <rect x="-5" y="116" width="188" height="155" rx="2" fill="#c99574" stroke="#7c5e4d" stroke-width="5"/>
+  <path d="M17 118c-11-81 15-105 68-119 53 14 78 39 69 119Z" fill="#a96856" stroke="#7b5147" stroke-width="5"/>
+  <path d="M35 77q50-42 103 0" fill="none" stroke="#d6a074" stroke-width="5"/>
+  <path d="M85 2v-26" stroke="#6b4d41" stroke-width="6"/><circle cx="85" cy="-26" r="9" fill="#dcb676"/>
+  <path d="M22 156h135M15 196h150M8 239h172" stroke="#efd0a4" stroke-width="8"/>
+  <rect x="62" y="185" width="46" height="86" rx="21" fill="#6e5b4b"/><rect x="21" y="179" width="23" height="35" rx="11" fill="#7a6551"/><rect x="129" y="179" width="23" height="35" rx="11" fill="#7a6551"/>
+</g>
+<!-- Bamboo clusters and tea gardens foreground -->
+<path d="M0 476q150-60 305-15 93-30 210-4 210-30 350-10 222-36 343 17 165-47 392 10v46H0Z" fill="#365e3f"/>
+<g stroke="#2d6a42" fill="none" stroke-linecap="round"><path d="M63 492 78 369m-5 62 42-41m-42 41-23-52m142 117-12-127m12 55 43-36m-43 59-45-33M1485 505l-15-133m14 62 38-31m-42 27-35-47" stroke-width="8"/><path d="M77 391q13-14 28 3m-32 25q-22-9-29-20m140-9q19-18 35-11m-30 42q-26-15-42-16m1329-14q18-19 36-17m-31 47q-20-20-43-16" stroke-width="7"/></g>
+<g fill="none" stroke="#81a06c" stroke-width="6"><path d="M0 498Q100 467 210 489t220-7 220 8 200-7 250 8 250-6"/><path d="M0 517q110-29 220-12 90-28 197-2 180-24 308 0 180-23 340 0 250-32 435 0"/></g>
+<!-- Single-horned rhinoceros silhouette, Assam -->
+<g transform="translate(1370 405)" fill="#4a5a4b" stroke="#354c3a" stroke-width="3" stroke-linejoin="round"><path d="m-15 44-12-25-40 2-21 22-7 35h24l11-16h56l16 17h20l1-38-18-18-14-25-17-14 6 31Z"/><path d="m-48 24-30-11 22-9-2 17"/><path d="M-18 12-7-13 0 12"/><circle cx="-37" cy="27" r="3" fill="#f3e1bf" stroke="none"/></g>
+<!-- Ground plane -->
+<path d="M0 505q320-16 570 0 340-17 650 0 210-10 380 0v15H0Z" fill="#294b36"/>
+</svg>

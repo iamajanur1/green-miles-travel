@@ -17,5 +17,5 @@ return [
     ),
 
      'maintenance'=>['driver'=>'file','store'=>'database'],
-     
+     'providers' => \Illuminate\Support\ServiceProvider::defaultProviders()->toArray(),
 ];

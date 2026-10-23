@@ -16,6 +16,12 @@ return [
         explode(',', env('APP_PREVIOUS_KEYS', ''))
     ),
 
-     'maintenance'=>['driver'=>'file','store'=>'database'],
-     'providers' => \Illuminate\Support\ServiceProvider::defaultProviders()->toArray(),
+         'maintenance' => [
+        'driver' => 'file',
+        'store' => 'database',
+        ],
+
+    'providers' => \Illuminate\Support\ServiceProvider::defaultProviders()->toArray(),
+
+    'aliases' => \Illuminate\Support\Facades\Facade::defaultAliases()->toArray(),
 ];
